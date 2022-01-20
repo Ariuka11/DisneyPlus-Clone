@@ -15,7 +15,7 @@ export default function Header() {
         height={80}
         className="cursor pointer"
       />
-      <div className="hidden ml-10 md:flex items-center space-x-6">
+      <div className="hidden ml-10 md:flex items-center space-x-2">
         <a className="nav-items group">
           <HomeIcon className="h-4" />
           <span className="span">Home</span>
@@ -33,15 +33,15 @@ export default function Header() {
           <span className="span">Originals</span>
         </a>
         <a className="nav-items group">
-          <img src="/images/movie-icon.svg" className="h-5" />
+          <img src="/images/movie-icon.svg" className="h-5 mb-[0.2rem]" />
           <span className="span">Movies</span>
         </a>
         <a className="nav-items group">
-          <img src="/images/series-icon.svg" className="h-5" />
+          <img src="/images/series-icon.svg" className="h-5 mb-[0.2rem]" />
           <span className="span">Series</span>
         </a>
       </div>
-      <div className="ml-auto">Login</div>
+      <button className="ml-auto text-center pb-2  md:pl-6">Login</button>
     </div>
   );
 }

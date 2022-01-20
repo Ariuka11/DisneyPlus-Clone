@@ -4,7 +4,11 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: (image) => ({
+        home: "url(/images/background.png)",
+      }),
+    },
     colors: {
       primary: "#040714",
       navColor: "white",

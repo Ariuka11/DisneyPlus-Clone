@@ -15,21 +15,21 @@ export default function Header() {
         height={80}
         className="cursor pointer"
       />
-      <div className="hidden ml-10 md:flex items-center space-x-2">
+      <div className="hidden ml-10 md:flex items-center md:space-x-2 lg:space-x-6">
         <a className="nav-items group">
-          <HomeIcon className="h-4" />
+          <HomeIcon className="h-4 mb-[0.2rem]" />
           <span className="span">Home</span>
         </a>
         <a className="nav-items group">
-          <SearchIcon className="h-4" />
+          <SearchIcon className="h-4 mb-[0.2rem]" />
           <span className="span">Search</span>
         </a>
         <a className="nav-items group">
-          <PlusIcon className="h-4" />
+          <PlusIcon className="h-4 mb-[0.2rem]" />
           <span className="span">Watchlist</span>
         </a>
         <a className="nav-items group">
-          <StarIcon className="h-4" />
+          <StarIcon className="h-4 mb-[0.2rem]" />
           <span className="span">Originals</span>
         </a>
         <a className="nav-items group">

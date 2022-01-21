@@ -2,8 +2,15 @@ import Head from "next/head";
 import Carousel from "../components/Carousel";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import Movies from "../components/Movies";
+import TvShows from "../components/TvShows";
 
-export default function Home() {
+export default function Home({
+  popularMovies,
+  popularTvShows,
+  topRatedMovies,
+  topRatedTvShows,
+}) {
   return (
     <div className="">
       <Head>
@@ -15,7 +22,42 @@ export default function Home() {
       <main className="relative min-h-screen after:bg-home after:bg-center after:bg-cover after:bg-no-repeat after:bg-fixed after:absolute after:inset-0 after:-z-10">
         <Carousel />
         <Hero />
+        <Movies results={popularMovies} title="Popular Movies" />
+        <TvShows results={popularTvShows} title="Popular Tv Shows" />
+        <Movies results={topRatedMovies} title="Top Rated Movies" />
+        <TvShows results={topRatedTvShows} title="Top Rated Tv Shows" />
       </main>
     </div>
   );
+}
+
+const tmdbUrl = "https://api.themoviedb.org/3";
+
+const dynamicUrl = (a, b) => {
+  return `${tmdbUrl}/${a}/${b}?api_key=${process.env.MOVIE_API_KEY}&language=en-US@page=1`;
+};
+export async function getServerSideProps() {
+  const [popularMoviesRes, popularShowsRes, topMoviesRes, topShowsRes] =
+    await Promise.all([
+      fetch(dynamicUrl("movie", "popular")),
+      fetch(dynamicUrl("tv", "popular")),
+      fetch(dynamicUrl("movie", "top_rated")),
+      fetch(dynamicUrl("tv", "top_rated")),
+    ]);
+  const [popularMovies, popularTvShows, topRatedMovies, topRatedTvShows] =
+    await Promise.all([
+      popularMoviesRes.json(),
+      popularShowsRes.json(),
+      topMoviesRes.json(),
+      topShowsRes.json(),
+    ]);
+  console.log(popularMoviesRes);
+  return {
+    props: {
+      popularMovies: popularMovies.results,
+      popularTvShows: popularTvShows.results,
+      topRatedMovies: topRatedMovies.results,
+      topRatedTvShows: topRatedTvShows.results,
+    },
+  };
 }

@@ -60,7 +60,7 @@ const Show = ({ result }) => {
               <img src="/images/group-icon.svg" alt="group-icon" />
             </div>
           </div>
-          <p className="text-sm md: text-base opacity-90 ">
+          <p className="text-sm md:text-base opacity-90 ">
             {result.release_date || result.first_air_date}•{" "}
             {Math.floor(result.runtime / 60)}h {result.runtime % 60}m •{" "}
             {result.genres.map((g) => g.name + " ")}{" "}
@@ -71,36 +71,35 @@ const Show = ({ result }) => {
         </div>
         {/* Trailer show area*/}
         {showPlayer && (
-          <div
-            className="absolute inset-0 bg-primary opacity-80 h-full w-full z-50"
-            onClick={() => setShowPlayer(false)}
-          />
-        )}
-
-        <div
-          className={`absolute top-3 inset-x-[7%]  md:inset-x-[13%] rounded overflow-hidden transition duration-200 ${
-            showPlayer ? "opacity-100 z-50" : "opacity-0"
-          }`}
-        >
-          <div className="flex items-center justify-between bg-primary text-secondary p-4">
-            <span className="font-medium">{result.title} trailer</span>
-            <div className="cursor-pointer w-8 h-8 flex justify-center items-center rounded-lg opacity-50 hover:opacity-80 hover:bg-primary">
-              <XIcon className="h-5" onClick={() => setShowPlayer(false)} />
+          <div>
+            <div
+              className="absolute inset-0 bg-primary opacity-80 h-full w-full z-50"
+              onClick={() => setShowPlayer(false)}
+            />
+            <div
+              className={`absolute top-3 inset-x-[7%]  md:inset-x-[13%] rounded overflow-hidden transition duration-200 ${
+                showPlayer ? "opacity-100 z-50" : "opacity-0"
+              }`}
+            >
+              <div className="flex items-center justify-between bg-primary text-secondary p-4">
+                <span className="font-medium">{result.title} trailer</span>
+                <div className="cursor-pointer w-8 h-8 flex justify-center items-center rounded-lg opacity-50 hover:opacity-80 hover:bg-primary">
+                  <XIcon className="h-5" onClick={() => setShowPlayer(false)} />
+                </div>
+              </div>
+              <div className="relative pt-[56.25%]">
+                <ReactPlayer
+                  url={`https://www.youtube.com/watch?v=${result.videos?.results[index]?.key}`}
+                  width="100%"
+                  height="100%"
+                  style={{ position: "absolute", top: "0", left: "0" }}
+                  controls={true}
+                  playing={showPlayer}
+                />
+              </div>
             </div>
           </div>
-          <div className="relative pt-[56.25%]">
-            {showPlayer && (
-              <ReactPlayer
-                url={`https://www.youtube.com/watch?v=${result.videos?.results[index]?.key}`}
-                width="100%"
-                height="100%"
-                style={{ position: "absolute", top: "0", left: "0" }}
-                controls={true}
-                playing={showPlayer}
-              />
-            )}
-          </div>
-        </div>
+        )}
       </section>
     </div>
   );

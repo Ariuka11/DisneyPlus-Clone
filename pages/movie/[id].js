@@ -8,7 +8,9 @@ import Header from "../../components/Header";
 const Movie = ({ result }) => {
   const image_url = "https://image.tmdb.org/t/p/original/";
   const [showPlayer, setShowPlayer] = useState(false);
-  const index = result.videos.results.findIndex((i) => i.type === "Trailer");
+  const index = result.videos.results.findIndex(
+    (i) => i.type === "Trailer" || "Official Trailer"
+  );
 
   return (
     <div className="relative">

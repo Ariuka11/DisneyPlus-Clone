@@ -5,15 +5,18 @@ import {
   PlusIcon,
   StarIcon,
 } from "@heroicons/react/solid";
+import { useRouter } from "next/router";
 
 export default function Header() {
+  const router = useRouter();
   return (
     <div className="sticky top-0 z-[1000] bg-primary px-10 min-h-[5vmin] max-h-96h flex flex-row items-center text-xl max-h-96 min-h-60 font-body text-secondary">
       <Image
         src="/images/logo.svg"
         width={80}
         height={80}
-        className="cursor pointer"
+        className="cursor-pointer"
+        onClick={() => router.push("/")}
       />
       <div className="hidden ml-10 md:flex items-center md:space-x-2 lg:space-x-6">
         <a className="nav-items group">
